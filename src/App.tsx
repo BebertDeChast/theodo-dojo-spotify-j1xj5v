@@ -3,6 +3,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { fetchTracks } from './lib/fetchTracks';
 import { useQuery } from '@tanstack/react-query';
+import { SavedTrack } from 'spotify-types';
 
 const App = () => {
   const [trackIndex, setTrackIndex] = useState(0);
@@ -15,6 +16,11 @@ const App = () => {
     queryKey: ['tracks'],
     queryFn: fetchTracks,
   });
+
+  const AlbumCover = () => {
+    const src = tracks?.[trackIndex]?.track.album.images[0]?.url;
+    return <img src={src} style={{ width: 400, height: 400 }} />;
+  };
 
   useEffect;
   return (
@@ -29,7 +35,7 @@ const App = () => {
         ) : (
           <>
             <div className="App-images">
-              <AlbumCover track={tracks?.[trackIndex]} />
+              <AlbumCover />
               <p>{isLoading}</p>
               <p> Il y a {tracks?.length} musiques disponibles </p>
               <p>
