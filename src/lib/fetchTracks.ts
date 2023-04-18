@@ -4,16 +4,39 @@ const apiToken: string =
 import { SavedTrack } from 'spotify-types';
 
 export const fetchTracks = async (): Promise<SavedTrack[]> => {
-  const response = await fetch('https://api.spotify.com/v1/me/tracks', {
-    method: 'GET',
-    headers: {
-      Authorization: 'Bearer ' + apiToken,
+  const response = await fetch(
+    'https://api.spotify.com/v1/me/tracks?offset=0&limit=50',
+    {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + apiToken,
+      },
     },
-  });
+  );
   if (!response.ok) {
     throw new Error(`Fetching tracks failed with status ${response.status}`);
   }
   const data = (await response.json()) as { items: SavedTrack[] };
 
-  return data.items;
+  return shuffleArray(data.items);
 };
+
+export function shuffleArray(array: any) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}

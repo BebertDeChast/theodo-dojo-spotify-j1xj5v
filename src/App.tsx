@@ -3,7 +3,6 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { fetchTracks } from './lib/fetchTracks';
 import { useQuery } from '@tanstack/react-query';
-import { SavedTrack } from 'spotify-types';
 
 const App = () => {
   const [trackIndex, setTrackIndex] = useState(0);
@@ -39,7 +38,7 @@ const App = () => {
               <p>{isLoading}</p>
               <p> Il y a {tracks?.length} musiques disponibles </p>
               <p>
-                Le nom de la première musique est :{' '}
+                Le nom de la musique est :{' '}
                 {tracks?.[trackIndex]?.track?.name}
               </p>
               <audio
