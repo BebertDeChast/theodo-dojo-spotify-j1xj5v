@@ -1,5 +1,6 @@
 import logo from './assets/logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 const trackUrls = [
   'https://p.scdn.co/mp3-preview/742294f35af9390e799dd96c633788410a332e52',
@@ -10,6 +11,11 @@ const trackUrls = [
 ];
 
 const App = () => {
+  const [trackIndex, setTrackIndex] = useState(0);
+
+  const goToNextTrack = () => {
+    setTrackIndex(trackIndex + 1);
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -17,13 +23,12 @@ const App = () => {
         <h1 className="App-title">Ceci est un test</h1>
       </header>
       <div className="App-images">
-        <p>
-          Texte
-        </p>
+        <p>Texte</p>
       </div>
 
       <div className="App-buttons"></div>
-      <audio src={trackUrls[0]} autoPlay controls />
+      <audio src={trackUrls[trackIndex]} autoPlay controls />
+      <button onClick={goToNextTrack}>Next track</button>
     </div>
   );
 };
