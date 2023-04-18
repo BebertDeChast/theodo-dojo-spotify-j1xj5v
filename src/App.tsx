@@ -29,6 +29,7 @@ const App = () => {
         ) : (
           <>
             <div className="App-images">
+              <AlbumCover track={tracks?.[trackIndex]} />
               <p>{isLoading}</p>
               <p> Il y a {tracks?.length} musiques disponibles </p>
               <p>
