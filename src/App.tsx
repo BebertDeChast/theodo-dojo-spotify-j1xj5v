@@ -1,6 +1,6 @@
 import logo from './assets/logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchTracks } from './lib/fetchTracks';
 import { useQuery } from '@tanstack/react-query';
 
@@ -11,13 +11,12 @@ const App = () => {
     setTrackIndex(trackIndex + 1);
   };
 
-  const { data: tracks } = useQuery({
+  const { data: tracks, isLoading } = useQuery({
     queryKey: ['tracks'],
     queryFn: fetchTracks,
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-
+  useEffect;
   return (
     <div className="App">
       <header className="App-header">
@@ -25,13 +24,30 @@ const App = () => {
         <h1 className="App-title">Ceci est un test</h1>
       </header>
       <div className="App-images">
-        <p>{isLoading}</p>
-        <p>{tracks?.[trackIndex]?.track.name}</p>
+        {isLoading ? (
+          <h1 className="App-title">LOADING....</h1>
+        ) : (
+          <>
+            <div className="App-images">
+              <p>{isLoading}</p>
+              <p> Il y a {tracks?.length} musiques disponibles </p>
+              <p>
+                Le nom de la première musique est :{' '}
+                {tracks?.[trackIndex]?.track?.name}
+              </p>
+              <audio
+                src={tracks?.[trackIndex]?.track.preview_url}
+                autoPlay
+                controls
+              />
+              <button onClick={goToNextTrack}>Next track</button>
+            </div>
+            <div className="App-buttons"></div>
+          </>
+        )}
       </div>
 
       <div className="App-buttons"></div>
-      <audio src={tracks?.[trackIndex]?.track.preview_url} autoPlay controls />
-      <button onClick={goToNextTrack}>Next track</button>
     </div>
   );
 };
