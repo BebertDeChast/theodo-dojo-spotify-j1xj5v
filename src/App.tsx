@@ -1,6 +1,14 @@
 import logo from './assets/logo.svg';
 import './App.css';
 
+const trackUrls = [
+  'https://p.scdn.co/mp3-preview/742294f35af9390e799dd96c633788410a332e52',
+  'https://p.scdn.co/mp3-preview/5a12483aa3b51331aba663131dbac967ccb33d99',
+  'https://p.scdn.co/mp3-preview/31f65b6a613010f22316c7be335b62226cf2f263',
+  'https://p.scdn.co/mp3-preview/0f6b8a3524ec410020457da4cdd7717f9addce2f',
+  'https://p.scdn.co/mp3-preview/ac28d1b0be285ed3bfd8e9fa5fad133776d7cf36',
+];
+
 const App = () => {
   return (
     <div className="App">
@@ -9,9 +17,13 @@ const App = () => {
         <h1 className="App-title">Ceci est un test</h1>
       </header>
       <div className="App-images">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget erat diam. Donec ex ipsum, ultricies a magna sit amet, lacinia ullamcorper sem. Sed gravida leo at feugiat venenatis. Sed tempus dignissim orci, a dapibus mi ultricies at. Curabitur lacinia euismod quam ut semper. Nunc semper pulvinar dolor. Pellentesque lectus ligula, porta vel mi ac, condimentum semper urna. Praesent sed varius lorem, iaculis elementum nisi. Nullam vestibulum sapien ac ex ullamcorper, sit amet cursus sem molestie. Maecenas rhoncus sodales felis et faucibus. Donec eget pretium leo. Vivamus sit amet purus ut dolor pharetra sodales feugiat nec libero. Maecenas interdum purus ligula, id mollis odio lacinia a. Suspendisse ex libero, vehicula sed ultrices at, congue at eros.</p>
+        <p>
+          Texte
+        </p>
       </div>
+
       <div className="App-buttons"></div>
+      <audio src={trackUrls[0]} autoPlay controls />
     </div>
   );
 };
